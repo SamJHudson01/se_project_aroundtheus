@@ -1,0 +1,11 @@
+.footer {
+    margin-top: 68px;
+    margin-bottom: 60px;
+}
+
+.footer__text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.21;
+    color: #545454;
+}
