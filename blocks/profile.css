@@ -1,0 +1,43 @@
+.profile {
+    width: 100%;
+    display: flex;
+    margin-top: 36.25px;
+}
+
+.profile__picture {
+    border-radius: 200px;
+    width: 127.5px;
+    height: 127.5px;
+}
+
+.profile__owner {
+    align-self: center;
+    margin-left: 30px;
+}
+
+.profile__name {
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.42;
+    margin: 0;
+}
+
+.profile__title {
+    margin: 16px 0 0 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.21;
+}
+
+.profile__edit-button {
+    align-self: center;
+    margin-bottom: 30px;
+    margin-left: 18px;
+}
+
+.profile__add-button {
+    width: 150px;
+    height: 50px;
+    margin-left: auto;
+    align-self: center;
+}
