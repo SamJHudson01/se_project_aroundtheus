@@ -1,0 +1,13 @@
+.header__image {
+    max-width: 173px;
+    max-height: 33px;
+    margin-top: 45px;
+}
+
+.header__divider {
+    margin-top: 41px;
+    margin-bottom: 0;
+    height: 1px;
+    background-color: #545454;
+    border: none;
+}
