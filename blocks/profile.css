@@ -20,6 +20,9 @@
     font-size: 42px;
     line-height: 1.42;
     margin: 0;
+    max-width: 500px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
 }
 
@@ -28,6 +31,10 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 1.21;
+    max-width: 460px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .profile__edit-button {
