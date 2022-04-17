@@ -11,3 +11,9 @@
     background-color: #545454;
     border: none;
 }
+
+@media screen and (max-width: 580px) {
+    .header__image {
+        margin-left: 27px;
+    }
+}

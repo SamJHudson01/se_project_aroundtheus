@@ -88,3 +88,29 @@
     line-height: 1.21;
     display: block;
 }
+
+@media screen and (max-width: 580px) {
+    .popup__content {
+        width: 282px;
+        min-height: 322px;
+    }
+    .popup__title {
+        max-width: 238px;
+        margin-top: 25px;
+    }
+    .popup__close {
+        width: 26px;
+        height: 26px;
+        top: -38.62px;
+        right: 0
+    }
+    .popup__input-type-name {
+        margin-top: 76px;
+    }
+    .popup__input {
+        max-width: 238px;
+    }
+    .popup__save-button {
+        max-width: 238px;
+    }
+}
