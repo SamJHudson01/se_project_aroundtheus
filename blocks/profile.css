@@ -15,7 +15,7 @@
     margin-left: 30px;
 }
 
-.profile__nameEdit {
+.profile__name-edit {
     display: flex;
 }
 
@@ -42,7 +42,13 @@
 }
 
 .profile__edit-button {
+    height: 24px;
+    width: 24px;
     margin-left: 18px;
+    background: url(../images/Edit\ Button.svg);
+    background-size: cover;
+    border: 0;
+    align-self: center;
 }
 
 .profile__edit-button:hover {
@@ -50,18 +56,19 @@
     opacity: 0.6;
 }
 
-.profile__add-button_small {
+.profile__add-button {
     width: 150px;
     height: 50px;
     margin-left: auto;
     align-self: center;
+    background-image: url("../images/Add Button small.svg");
+    background-color: black;
+    background-size: cover;
+    border: none;
+    padding: 0;
 }
 
-.profile__add-button_large {
-    display: none;
-}
-
-.profile__add-button_small:hover {
+.profile__add-button:hover {
     cursor: pointer;
     opacity: 0.6;
 }
@@ -73,31 +80,38 @@
     .profile__picture {
         margin: 0 auto;
     }
-    .profile__add-button_small {
-        display: none;
+    .profile__owner {
+        margin: 0 auto;
     }
-    .profile__add-button_large {
+    .profile__add-button {
         display: block;
         width: 282px;
         height: 50px;
         margin: 36px auto auto auto;
         align-self: center;
+        background-image: url("../images/Add Button large.svg");
+    }
+    .profile__title {
+        margin: 14px auto auto auto;
+        font-size: 14px;
+        text-align: center;
     }
 }
 
 @media screen and (max-width: 580px) {
-    .profile__nameEdit {
+    .profile__name-edit {
         margin-top: 26.25px;
     }
     .profile__name {
         font-size: 22px;
+        max-width: 250px;
+    }
+    .profile__title {
+        max-width: 200px;
     }
     .profile__edit-button {
         margin-left: 10px;
-    }
-    .profile__title {
-        margin: 14 auto auto auto;
-        font-size: 14px;
-        text-align: center;
+        height: 18px;
+        width: 18px;
     }
 }

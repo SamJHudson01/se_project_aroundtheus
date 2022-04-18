@@ -1,5 +1,4 @@
 .card {
-    height: 361px;
     width: 282px;
     display: flex;
     flex-direction: column;
@@ -32,8 +31,16 @@
     overflow: hidden;
 }
 
-.card__like_unliked {
+.card__like-button {
     width: 21px;
     height: 19px;
     align-self: center;
+    cursor: pointer;
+    background-image: url("../images/heart_unfilled.svg");
+    border: 0;
+    background-color: transparent;
+}
+
+.card__like-button:hover {
+    opacity: 0.5;
 }

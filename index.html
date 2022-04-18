@@ -17,79 +17,81 @@
     <div class="page__content">
         <header class="header">
             <img src="images/header__image.svg" alt="Around the US" class="header__image">
-            <hr class="header__divider">
         </header>
-        <section class="profile">
-            <img src="images/profile__picture.jpeg" alt="Profile Picture" class="profile__picture">
-            <div class="profile__owner">
-                <div class="profile__nameEdit">
-                    <h1 class="profile__name">Jacques Cousteau</h1>
-                    <img src="images/Edit Button.svg" alt="Edit Button" class="profile__edit-button">
+        <div class="main">
+            <section class="profile">
+                <img src="images/profile__picture.jpeg" alt="Profile Picture" class="profile__picture">
+                <div class="profile__owner">
+                    <div class="profile__name-edit">
+                        <h1 class="profile__name">Jacques Cousteau</h1>
+                        <button type="button" class="profile__edit-button"></button>
+                    </div>
+                    <h2 class="profile__title">Explorer</h2>
                 </div>
-                <h2 class="profile__title">Explorer</h2>
-            </div>
 
-            <img src="images/Add Button small.svg" alt="Add Button" class="profile__add-button_small">
-            <img src="images/Add Button large.svg" alt="Add Button" class="profile__add-button_large">
-        </section>
-        <section class="photo-grid">
-            <article class="card">
-                <img src="images/Yosemite.jpg" alt="Yosemite Valley" class="card__photo">
-                <div class="card__details">
-                    <paragraph class="card__location">Yosemite Valley</paragraph>
-                    <img src="images/heart_unfilled.svg" alt="" class="card__like_unliked">
-                </div>
-            </article>
-            <article class="card">
-                <img src="images/Lake_louise.jpg" alt="Lake Louise" class="card__photo">
-                <div class="card__details">
-                    <paragraph class="card__location">Lake Louise</paragraph>
-                    <img src="images/heart_unfilled.svg" alt="" class="card__like_unliked">
-                </div>
-            </article>
-            <article class="card">
-                <img src="images/Bald_mountains.jpg" alt="Bald Mountains" class="card__photo">
-                <div class="card__details">
-                    <paragraph class="card__location">Bald Mountains</paragraph>
-                    <img src="images/heart_unfilled.svg" alt="" class="card__like_unliked">
-                </div>
-            </article>
-            <article class="card">
-                <img src="images/Latemar.jpg" alt="Latemar" class="card__photo">
-                <div class="card__details">
-                    <paragraph class="card__location">Latemar</paragraph>
-                    <img src="images/heart_unfilled.svg" alt="" class="card__like_unliked">
-                </div>
-            </article>
-            <article class="card">
-                <img src="images/Vanoise.jpg" alt="Vanoise" class="card__photo">
-                <div class="card__details">
-                    <paragraph class="card__location">Vanoise</paragraph>
-                    <img src="images/heart_unfilled.svg" alt="" class="card__like_unliked">
-                </div>
-            </article>
-            <article class="card">
-                <img src="images/Lago.jpg" alt="Lago di Braies" class="card__photo">
-                <div class="card__details">
-                    <paragraph class="card__location">Lago di Braies</paragraph>
-                    <img src="images/heart_unfilled.svg" alt="" class="card__like_unliked">
-                </div>
-            </article>
-        </section>
+                <button type="button" class="profile__add-button"></button>
+            </section>
+            <section class="photo-grid">
+                <article class="card">
+                    <img src="images/Yosemite.jpg" alt="Yosemite Valley" class="card__photo">
+                    <div class="card__details">
+                        <h3 class="card__location">Yosemite Valley</h3>
+                        <button type="button" class="card__like-button"></button>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="images/Lake_louise.jpg" alt="Lake Louise" class="card__photo">
+                    <div class="card__details">
+                        <h3 class="card__location">Lake Louise</h3>
+                        <button type="button" class="card__like-button"></button>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="images/Bald_mountains.jpg" alt="Bald Mountains" class="card__photo">
+                    <div class="card__details">
+                        <h3 class="card__location">Bald Mountains</h3>
+                        <button type="button" class="card__like-button"></button>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="images/Latemar.jpg" alt="Latemar" class="card__photo">
+                    <div class="card__details">
+                        <h3 class="card__location">Latemar</h3>
+                        <button type="button" class="card__like-button"></button>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="images/Vanoise.jpg" alt="Vanoise" class="card__photo">
+                    <div class="card__details">
+                        <h3 class="card__location">Vanoise</h3>
+                        <button type="button" class="card__like-button"></button>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="images/Lago.jpg" alt="Lago di Braies" class="card__photo">
+                    <div class="card__details">
+                        <h3 class="card__location">Lago di Braies</h3>
+                        <button type="button" class="card__like-button"></button>
+                    </div>
+                </article>
+            </section>
+        </div>
         <footer class="footer">
             <p class="footer__text">© 2021 Around The U.S.</p>
         </footer>
         <div class="popup">
             <div class="popup__content">
-                <button class="popup__close"></button>
+                <button class="popup__close" type="button"></button>
                 <h3 class="popup__title">Edit Profile</h3>
                 <form name="new" class="popup__form">
-                    <input type="text" name="name" class="popup__input popup__input-type-name" placeholder="Name">
-                    <input type="text" name="description" class="popup__input popup__input-type-description" placeholder="Description">
-                    <button class="popup__save-button">Save</button>
+                    <input type="text" name="name" class="popup__input" placeholder="Name">
+                    <input type="text" name="description" class="popup__input" placeholder="Description">
+                    <button class="popup__save-button" type="submit">Save</button>
                 </form>
             </div>
         </div>
     </div>
     <script src="./scripts/index.js"></script>
 </body>
+
+</html>
