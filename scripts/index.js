@@ -4,7 +4,7 @@ const editButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__title");
 const titleInput = document.querySelector('[name="name"]');
-const descriptionInput = document.querySelector('[name="description"]');
+const descriptionInput = document.querySelector('input[name="description"]');
 const closeButton = document.querySelector(".popup__close");
 
 
