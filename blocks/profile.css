@@ -114,4 +114,7 @@
         height: 18px;
         width: 18px;
     }
+    .profile__add-button {
+        background-size: contain;
+    }
 }

@@ -14,11 +14,11 @@
 </head>
 
 <body class="page">
-    <main class="page__content">
+    <div class="page__content">
         <header class="header">
             <img src="images/header__image.svg" alt="Around the US" class="header__image">
         </header>
-        <div class="main">
+        <main class="main">
             <section class="profile">
                 <img src="images/profile__picture.jpeg" alt="Profile Picture" class="profile__picture">
                 <div class="profile__owner">
@@ -75,22 +75,22 @@
                     </div>
                 </article>
             </section>
-        </div>
-        <footer class="footer">
-            <p class="footer__text">© 2021 Around The U.S.</p>
-        </footer>
-        <div class="popup">
-            <div class="popup__content">
-                <button class="popup__close" type="button"></button>
-                <h3 class="popup__title">Edit Profile</h3>
-                <form name="new" class="popup__form">
-                    <input type="text" name="name" class="popup__input" placeholder="Name">
-                    <input type="text" name="description" class="popup__input" placeholder="Description">
-                    <button class="popup__save-button" type="submit">Save</button>
-                </form>
-            </div>
-        </div>
+    </div>
     </main>
+    <footer class="footer">
+        <p class="footer__text">© 2021 Around The U.S.</p>
+    </footer>
+    <div class="popup">
+        <div class="popup__content">
+            <button class="popup__close" type="button"></button>
+            <h3 class="popup__title">Edit Profile</h3>
+            <form name="new" class="popup__form">
+                <input type="text" name="name" class="popup__input" placeholder="Name">
+                <input type="text" name="description" class="popup__input" placeholder="Description">
+                <button class="popup__save-button" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 
