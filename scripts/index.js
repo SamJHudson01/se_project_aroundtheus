@@ -29,6 +29,8 @@ function closePopup(popup) {
     popup.classList.remove('popup_true');
 }
 
+
+
 function openPopup(popup) {
     titleInput.value = profileName.textContent;
     descriptionInput.value = profileDescription.textContent;
@@ -83,9 +85,23 @@ function createCard(data) {
     const card = cardTemplate.content.querySelector('.card').cloneNode(true);
     const imageElement = card.querySelector('.card__image');
     const titleElement = card.querySelector('.card__title');
+    const likeButton = card.querySelector('.card__like-button');
+    const deleteButton = card.querySelector('.card__delete-button');
 
     imageElement.src = data.url;
     titleElement.textContent = data.title;
+
+    function toggleLikeButton(button) {
+        if (button.classList.contains('card__like-button')) {
+            button.classList.remove('card__like-button');
+            button.classList.add('card__like-button_true');
+        } else {
+            button.classList.add('card__like-button');
+            button.classList.remove('card__like-button_true');
+        }
+    }
+
+    likeButton.addEventListener('click', toggleLikeButton(likeButton));
 
     imageElement.addEventListener('click', () => {
         const popupImage = imagePopupWindow.querySelector('.popup__image');
