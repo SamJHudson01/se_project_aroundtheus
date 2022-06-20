@@ -1,5 +1,5 @@
 .popup {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
@@ -8,10 +8,14 @@
     bottom: 0;
     right: 0;
     left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.6s, opacity 0.3s linear;
 }
 
 .popup_true {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
 }
 
 .popup__content {
@@ -91,6 +95,35 @@
     opacity: 0.8;
 }
 
+.popup__content_type-image {
+    max-width: fit-content;
+    max-height: 75vh;
+    max-width: 75vw;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background-color: none;
+    background: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.popup__image {
+    max-width: 100%;
+    max-height: 75vh;
+}
+
+.popup__caption {
+    position: absolute;
+    font-size: 12px;
+    line-height: 1.21;
+    top: calc(100% + 10px);
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
 @media screen and (max-width: 580px) {
     .popup__content {
         width: 282px;
@@ -115,5 +148,17 @@
     .popup__save-button {
         max-width: 238px;
         font-size: 14px;
+    }
+    .popup__content_type-image {
+        max-width: fit-content;
+        max-height: 75vh;
+        max-width: 75vw;
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        background-color: transparent;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 }
