@@ -101,8 +101,18 @@ function createCard(data) {
         }
     }
 
+    function deleteCard() {
+        console.log(card);
+        card.classList.remove('card');
+        card.classList.add('card_removed');
+    }
+
     likeButton.addEventListener('click', () => {
         toggleLikeButton(likeButton)
+    });
+
+    deleteButton.addEventListener('click', () => {
+        deleteCard()
     });
 
     imageElement.addEventListener('click', () => {
