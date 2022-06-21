@@ -96,7 +96,6 @@
 }
 
 .popup__content_type-image {
-    max-width: fit-content;
     max-height: 75vh;
     max-width: 75vw;
     width: auto;
@@ -137,7 +136,7 @@
         width: 26px;
         height: 26px;
         top: -38.62px;
-        right: 0
+        right: 0;
     }
     .popup__input-type-name {
         margin-top: 76px;
@@ -150,7 +149,6 @@
         font-size: 14px;
     }
     .popup__content_type-image {
-        max-width: fit-content;
         max-height: 75vh;
         max-width: 75vw;
         width: auto;
