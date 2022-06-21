@@ -101,7 +101,9 @@ function createCard(data) {
         }
     }
 
-    likeButton.addEventListener('click', toggleLikeButton(likeButton));
+    likeButton.addEventListener('click', () => {
+        toggleLikeButton(likeButton)
+    });
 
     imageElement.addEventListener('click', () => {
         const popupImage = imagePopupWindow.querySelector('.popup__image');
