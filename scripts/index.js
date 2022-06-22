@@ -14,8 +14,6 @@ const closeButtons = document.querySelectorAll('.popup__close');
 const addButton = document.querySelector('.profile__add-button');
 const cardTemplate = document.querySelector('#card-template');
 const cardList = document.querySelector('.photo-grid');
-
-
 const initialCards = [
     { 'title': 'Delicious Cake', 'url': 'https://images.unsplash.com/photo-1655552360629-2cbbb116727f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' },
     { 'title': 'Lake Louise', 'url': 'https://code.s3.yandex.net/web-code/lake-louise.jpg' },
@@ -105,7 +103,6 @@ function createCard(data) {
     }
 
     function deleteCard() {
-        console.log(card);
         card.classList.remove('card');
         card.classList.add('card_removed');
     }
