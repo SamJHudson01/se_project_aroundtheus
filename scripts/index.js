@@ -12,6 +12,9 @@ const placeURL = document.querySelector('[name="url"]');
 const placeTitle = document.querySelector('[name="title"]');
 const closeButtons = document.querySelectorAll('.popup__close');
 const addButton = document.querySelector('.profile__add-button');
+const cardTemplate = document.querySelector('#card-template');
+const cardList = document.querySelector('.photo-grid');
+
 
 const initialCards = [
     { 'title': 'Delicious Cake', 'url': 'https://images.unsplash.com/photo-1655552360629-2cbbb116727f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' },
@@ -23,7 +26,8 @@ const initialCards = [
 ]
 
 
-
+titleInput.value = profileName.textContent;
+descriptionInput.value = profileDescription.textContent;
 
 function closePopup(popup) {
     popup.classList.remove('popup_true');
@@ -32,33 +36,33 @@ function closePopup(popup) {
 
 
 function openPopup(popup) {
-    titleInput.value = profileName.textContent;
-    descriptionInput.value = profileDescription.textContent;
     popup.classList.add('popup_true');
 }
 
 
-function editProfileformSubmitHandler(event) {
+function handleEditProfileFormSubmit(event) {
     event.preventDefault();
 
     profileName.textContent = titleInput.value;
     profileDescription.textContent = descriptionInput.value;
 
     closePopup(editProfilePopupWindow);
+
+    titleInput.value = profileName.textContent;
+    descriptionInput.value = profileDescription.textContent;
 }
 
-function newPlaceFormSubmitHandler(event) {
+function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
 
     const newObject = {
-        url: '',
-        title: ''
+        url: placeURL.value,
+        title: placeTitle.value
     }
 
-    newObject.url = placeURL.value;
-    newObject.title = placeTitle.value;
 
     renderCard(newObject);
+    closePopup(addPlacePopupWindow);
 }
 
 editButton.addEventListener('click', () => {
@@ -75,11 +79,10 @@ closeButtons.forEach((closeButton) => {
         closePopup(popup);
     })
 })
-editForm.addEventListener('submit', editProfileformSubmitHandler);
-addPlaceForm.addEventListener('submit', newPlaceFormSubmitHandler);
+editForm.addEventListener('submit', handleEditProfileFormSubmit);
+addPlaceForm.addEventListener('submit', handleNewPlaceFormSubmit);
 
-const cardTemplate = document.querySelector('#card-template');
-const cardList = document.querySelector('.photo-grid');
+
 
 function createCard(data) {
     const card = cardTemplate.content.querySelector('.card').cloneNode(true);
