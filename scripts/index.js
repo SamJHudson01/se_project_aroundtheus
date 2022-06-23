@@ -24,8 +24,7 @@ const initialCards = [
 ]
 
 
-titleInput.value = profileName.textContent;
-descriptionInput.value = profileDescription.textContent;
+
 
 function closePopup(popup) {
     popup.classList.remove('popup_true');
@@ -45,9 +44,6 @@ function handleEditProfileFormSubmit(event) {
     profileDescription.textContent = descriptionInput.value;
 
     closePopup(editProfilePopupWindow);
-
-    titleInput.value = profileName.textContent;
-    descriptionInput.value = profileDescription.textContent;
 }
 
 function handleNewPlaceFormSubmit(event) {
@@ -64,6 +60,8 @@ function handleNewPlaceFormSubmit(event) {
 }
 
 editButton.addEventListener('click', () => {
+    titleInput.value = profileName.textContent;
+    descriptionInput.value = profileDescription.textContent;
     openPopup(editProfilePopupWindow);
 });
 
@@ -108,6 +106,7 @@ function createCard(data) {
     }
 
     likeButton.addEventListener('click', () => {
+
         toggleLikeButton(likeButton)
     });
 
