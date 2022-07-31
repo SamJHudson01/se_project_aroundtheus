@@ -85,16 +85,23 @@
         <form name="add-card" class="popup__form" id="add-place-form">
           <input
             type="text"
+            id="place-title"
             name="title"
             class="popup__input"
             placeholder="Title"
+            maxlength="30"
+            required
           />
+          <span class="popup__error" id="place-title-error"></span>
           <input
-            type="text"
+            type="url"
+            id="place-link"
             name="url"
             class="popup__input"
             placeholder="Image link"
+            required
           />
+          <span class="popup__error" id="place-link-error"></span>
           <button class="popup__save-button" type="submit">Create</button>
         </form>
       </div>
