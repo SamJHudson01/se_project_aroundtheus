@@ -54,16 +54,26 @@
         <form name="edit-profile" class="popup__form" id="edit-profile-form">
           <input
             type="text"
+            id="owner-name"
             name="name"
             class="popup__input"
             placeholder="Name"
+            required
+            maxlength="40"
+            minlength="2"
           />
+          <span class="popup__error" id="owner-name-error"></span>
           <input
             type="text"
+            id="owner-about"
             name="description"
             class="popup__input"
             placeholder="Description"
+            required
+            maxlength="200"
+            minlength="2"
           />
+          <span class="popup__error" id="owner-about-error"></span>
           <button class="popup__save-button" type="submit">Save</button>
         </form>
       </div>
