@@ -43,24 +43,33 @@ const initialCards = [
 
 function closePopup(popup) {
     popup.classList.remove("popup_true");
+    togglePopupCloseEventListeners();
 }
 
 function openPopup(popup) {
     popup.classList.add("popup_true");
+    togglePopupCloseEventListeners();
 }
 
-function setPopupCloseEventListeners() {
+function togglePopupCloseEventListeners() {
     const allPopups = [...document.querySelectorAll(".popup")];
     allPopups.forEach((popup) => {
-        popup.addEventListener("click", () => {
-            closePopup(popup);
-        });
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
+        popup.addEventListener("click", (event) => {
+            if (event.target.classList.contains("popup")) {
                 closePopup(popup);
             }
         });
+        const handleEsc = () => {
+            if (event.key === "Escape") {
+                closePopup(popup);
+            }
+        };
+
+        if (popup.classList.contains("popup_true")) {
+            document.addEventListener("keydown", handleEsc);
+        } else {
+            document.removeEventListener("keydown", handleEsc);
+        }
     });
 }
 
@@ -83,6 +92,8 @@ function handleNewPlaceFormSubmit(event) {
 
     renderCard(newObject);
     closePopup(addPlacePopupWindow);
+    placeURL.value = "";
+    placeTitle.value = "";
 }
 
 editButton.addEventListener("click", () => {
@@ -156,4 +167,3 @@ function renderCard(data) {
 }
 
 initialCards.forEach(renderCard);
-setPopupCloseEventListeners();
