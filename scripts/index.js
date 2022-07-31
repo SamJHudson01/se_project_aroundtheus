@@ -49,6 +49,21 @@ function openPopup(popup) {
     popup.classList.add("popup_true");
 }
 
+function setPopupCloseEventListeners() {
+    const allPopups = [...document.querySelectorAll(".popup")];
+    allPopups.forEach((popup) => {
+        popup.addEventListener("click", () => {
+            closePopup(popup);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closePopup(popup);
+            }
+        });
+    });
+}
+
 function handleEditProfileFormSubmit(event) {
     event.preventDefault();
 
@@ -141,3 +156,4 @@ function renderCard(data) {
 }
 
 initialCards.forEach(renderCard);
+setPopupCloseEventListeners();
