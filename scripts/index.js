@@ -16,6 +16,7 @@ const cardTemplate = document.querySelector("#card-template");
 const cardList = document.querySelector(".photo-grid");
 const popupImage = imagePopupWindow.querySelector(".popup__image");
 const popupCaption = imagePopupWindow.querySelector(".popup__caption");
+const formSubmitButton = document.querySelector("#add-place-submit-button");
 const initialCards = [
     {
         title: "Delicious Cake",
@@ -90,7 +91,6 @@ function handleNewPlaceFormSubmit(event) {
 
     renderCard(newObject);
     closePopup(addPlacePopupWindow);
-    // On testing, this button is already greyed out and not working. Please can you explain in more detail what you would like me to change?
     placeURL.value = "";
     placeTitle.value = "";
 }
