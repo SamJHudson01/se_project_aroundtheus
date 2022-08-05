@@ -14,6 +14,8 @@ const closeButtons = document.querySelectorAll(".popup__close");
 const addButton = document.querySelector(".profile__add-button");
 const cardTemplate = document.querySelector("#card-template");
 const cardList = document.querySelector(".photo-grid");
+const popupImage = imagePopupWindow.querySelector(".popup__image");
+const popupCaption = imagePopupWindow.querySelector(".popup__caption");
 const initialCards = [
     {
         title: "Delicious Cake",
@@ -43,12 +45,19 @@ const initialCards = [
 
 function closePopup(popup) {
     popup.classList.remove("popup_true");
-    togglePopupCloseEventListeners();
+    document.removeEventListener("keydown", closeWithEscape);
 }
 
 function openPopup(popup) {
     popup.classList.add("popup_true");
-    togglePopupCloseEventListeners();
+    document.addEventListener("keydown", closeWithEscape);
+}
+
+function closeWithEscape(event) {
+    if (event.key === "Escape") {
+        const openedPopup = document.querySelector(".popup_true");
+        closePopup(openedPopup);
+    }
 }
 
 function togglePopupCloseEventListeners() {
@@ -59,17 +68,6 @@ function togglePopupCloseEventListeners() {
                 closePopup(popup);
             }
         });
-        const handleEsc = () => {
-            if (event.key === "Escape") {
-                closePopup(popup);
-            }
-        };
-
-        if (popup.classList.contains("popup_true")) {
-            document.addEventListener("keydown", handleEsc);
-        } else {
-            document.removeEventListener("keydown", handleEsc);
-        }
     });
 }
 
@@ -92,6 +90,7 @@ function handleNewPlaceFormSubmit(event) {
 
     renderCard(newObject);
     closePopup(addPlacePopupWindow);
+    // On testing, this button is already greyed out and not working. Please can you explain in more detail what you would like me to change?
     placeURL.value = "";
     placeTitle.value = "";
 }
@@ -124,20 +123,14 @@ function createCard(data) {
 
     imageElement.src = data.url;
     titleElement.textContent = data.title;
+    imageElement.alt = data.title;
 
     function toggleLikeButton(button) {
-        if (button.classList.contains("card__like-button")) {
-            button.classList.remove("card__like-button");
-            button.classList.add("card__like-button_true");
-        } else {
-            button.classList.add("card__like-button");
-            button.classList.remove("card__like-button_true");
-        }
+        button.classList.toggle("card__like-button_true");
     }
 
     function deleteCard() {
-        card.classList.remove("card");
-        card.classList.add("card_removed");
+        card.remove();
     }
 
     likeButton.addEventListener("click", () => {
@@ -149,9 +142,8 @@ function createCard(data) {
     });
 
     imageElement.addEventListener("click", () => {
-        const popupImage = imagePopupWindow.querySelector(".popup__image");
         popupImage.src = data.url;
-        const popupCaption = imagePopupWindow.querySelector(".popup__caption");
+        popupImage.alt = data.title;
         popupCaption.textContent = data.title;
         openPopup(imagePopupWindow);
     });
@@ -167,3 +159,4 @@ function renderCard(data) {
 }
 
 initialCards.forEach(renderCard);
+togglePopupCloseEventListeners();
