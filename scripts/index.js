@@ -1,3 +1,5 @@
+import FormValidator from "./FormValidator.js";
+
 const editProfilePopupWindow = document.querySelector("#edit-profile-popup");
 const addPlacePopupWindow = document.querySelector("#add-card-popup");
 const imagePopupWindow = document.querySelector("#image-popup");
@@ -43,6 +45,22 @@ const initialCards = [
         url: "https://code.s3.yandex.net/web-code/lago.jpg",
     },
 ];
+
+const validationConfig = {
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__save-button",
+    inactiveButtonClass: "popup__save-button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+};
+
+const editFormElement = editProfilePopupWindow.querySelector(".popup__form");
+const addFormElement = addPlacePopupWindow.querySelector(".popup__form");
+const editFormValidator = new FormValidator(validationConfig, editFormElement);
+const addFormValidator = new FormValidator(validationConfig, addFormElement);
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 function closePopup(popup) {
     popup.classList.remove("popup_true");
@@ -157,7 +175,10 @@ function addCardToPage(card) {
 }
 
 function renderCard(data) {
-    addCardToPage(createCard(data));
+    const card = new Card(data, cardTemplate);
+    addCardToPage(card.getView());
+
+    // addCardToPage(createCard(data));
 }
 
 initialCards.forEach(renderCard);
