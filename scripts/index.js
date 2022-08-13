@@ -1,6 +1,7 @@
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
 
+
 const editProfilePopupWindow = document.querySelector("#edit-profile-popup");
 const addPlacePopupWindow = document.querySelector("#add-card-popup");
 const imagePopupWindow = document.querySelector("#image-popup");
