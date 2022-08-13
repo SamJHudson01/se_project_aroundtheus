@@ -1,4 +1,5 @@
 import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
 
 const editProfilePopupWindow = document.querySelector("#edit-profile-popup");
 const addPlacePopupWindow = document.querySelector("#add-card-popup");
@@ -174,12 +175,13 @@ function addCardToPage(card) {
     cardList.prepend(card);
 }
 
-function renderCard(data) {
-    const card = new Card(data, cardTemplate);
-    addCardToPage(card.getView());
+const renderCard = (data, wrap) => {
+    const card = new Card(data, '#card-template').generateCard();
+    // wrap.prepend(createCard(data));
+    wrap.prepend(card);
 
-    // addCardToPage(createCard(data));
 }
 
-initialCards.forEach(renderCard);
+
+initialCards.forEach(card => renderCard(card, cardList));
 togglePopupCloseEventListeners();
