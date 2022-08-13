@@ -6,25 +6,28 @@ class Card {
     }
 
     _setEventListeners() {
-        this._likeButton.addEventListener("click", () => {
-            this._toggleLikeButton(likeButton);
-        });
+        this._element
+            .querySelector(".card__like-button")
+            .addEventListener("click", this._handleLikeIcon.bind(this));
 
-        this._deleteButton.addEventListener("click", () => {
-            this._handleDeleteCard();
-        });
+        this._element
+            .querySelector(".card__delete-button")
+            .addEventListener("click", this._handleDeleteCard);
 
-        imageElement.addEventListener("click", () => {
-            popupImage.src = data.url;
-            popupImage.alt = data.title;
-            popupCaption.textContent = data.title;
-            openPopup(imagePopupWindow);
-        });
+        this._element
+            .querySelector(".card__image")
+            .addEventListener("click", this._handlePreviewPicture);
     }
 
-    _toggleLikeButton() {}
+    _handleLikeIcon() {
+        this._element
+            .querySelector(".card__like-button")
+            .classList.toggle(".card__like-button_true");
+    }
 
     _handleDeleteCard() {}
+
+    _handlePreviewPicture() {}
 
     _getTemplate() {
         document
