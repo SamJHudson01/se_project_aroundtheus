@@ -4,7 +4,6 @@ import Card from "./Card.js";
 
 const editProfilePopupWindow = document.querySelector("#edit-profile-popup");
 const addPlacePopupWindow = document.querySelector("#add-card-popup");
-const imagePopupWindow = document.querySelector("#image-popup");
 const editForm = document.querySelector("#edit-profile-form");
 const addPlaceForm = document.querySelector("#add-place-form");
 const editButton = document.querySelector(".profile__edit-button");
@@ -16,10 +15,7 @@ const placeURL = document.querySelector('[name="url"]');
 const placeTitle = document.querySelector('[name="title"]');
 const closeButtons = document.querySelectorAll(".popup__close");
 const addButton = document.querySelector(".profile__add-button");
-const cardTemplate = document.querySelector("#card-template");
 const cardList = document.querySelector(".photo-grid");
-const popupImage = imagePopupWindow.querySelector(".popup__image");
-const popupCaption = imagePopupWindow.querySelector(".popup__caption");
 const formSubmitButton = document.querySelector("#add-place-submit-button");
 const initialCards = [
     {
@@ -69,7 +65,7 @@ function closePopup(popup) {
     document.removeEventListener("keydown", closeWithEscape);
 }
 
-function openPopup(popup) {
+export default function openPopup(popup) {
     popup.classList.add("popup_true");
     document.addEventListener("keydown", closeWithEscape);
 }
@@ -136,41 +132,6 @@ closeButtons.forEach((closeButton) => {
 editForm.addEventListener("submit", handleEditProfileFormSubmit);
 addPlaceForm.addEventListener("submit", handleNewPlaceFormSubmit);
 
-function createCard(data) {
-    const card = cardTemplate.content.querySelector(".card").cloneNode(true);
-    const imageElement = card.querySelector(".card__image");
-    const titleElement = card.querySelector(".card__title");
-    const likeButton = card.querySelector(".card__like-button");
-    const deleteButton = card.querySelector(".card__delete-button");
-
-    imageElement.src = data.url;
-    titleElement.textContent = data.title;
-    imageElement.alt = data.title;
-
-    function toggleLikeButton(button) {
-        button.classList.toggle("card__like-button_true");
-    }
-
-    function deleteCard() {
-        card.remove();
-    }
-
-    likeButton.addEventListener("click", () => {
-        toggleLikeButton(likeButton);
-    });
-
-    deleteButton.addEventListener("click", () => {
-        deleteCard();
-    });
-
-    imageElement.addEventListener("click", () => {
-        popupImage.src = data.url;
-        popupImage.alt = data.title;
-        popupCaption.textContent = data.title;
-        openPopup(imagePopupWindow);
-    });
-    return card;
-}
 
 function addCardToPage(card) {
     cardList.prepend(card);
