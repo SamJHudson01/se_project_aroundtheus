@@ -82,7 +82,6 @@ function handleNewPlaceFormSubmit(event) {
     renderCard(newObject, cardList);
     closePopup(addPlacePopupWindow);
     addFormValidator.toggleButtonState();
-    formSubmitButton.classList.add("popup__save-button_disabled");
     placeURL.value = "";
     placeTitle.value = "";
 }
