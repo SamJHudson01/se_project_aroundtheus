@@ -40,7 +40,7 @@ class FormValidator {
         }
     }
 
-    _toggleButtonState() {
+    toggleButtonState() {
         const foundInvalid = this._inputElements.some(
             (el) => !el.validity.valid
         );
@@ -57,7 +57,7 @@ class FormValidator {
         this._inputElements.forEach((inputElement) => {
             inputElement.addEventListener("input", (event) => {
                 this._checkInputValidity(inputElement);
-                this._toggleButtonState();
+                this.toggleButtonState();
             });
         });
     }

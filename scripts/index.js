@@ -1,5 +1,6 @@
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
+import { openPopup, closePopup, closeWithEscape, togglePopupCloseEventListeners } from "./utils.js";
 
 
 const editProfilePopupWindow = document.querySelector("#edit-profile-popup");
@@ -60,33 +61,6 @@ const addFormValidator = new FormValidator(validationConfig, addFormElement);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-function closePopup(popup) {
-    popup.classList.remove("popup_true");
-    document.removeEventListener("keydown", closeWithEscape);
-}
-
-export default function openPopup(popup) {
-    popup.classList.add("popup_true");
-    document.addEventListener("keydown", closeWithEscape);
-}
-
-function closeWithEscape(event) {
-    if (event.key === "Escape") {
-        const openedPopup = document.querySelector(".popup_true");
-        closePopup(openedPopup);
-    }
-}
-
-function togglePopupCloseEventListeners() {
-    const allPopups = [...document.querySelectorAll(".popup")];
-    allPopups.forEach((popup) => {
-        popup.addEventListener("click", (event) => {
-            if (event.target.classList.contains("popup")) {
-                closePopup(popup);
-            }
-        });
-    });
-}
 
 function handleEditProfileFormSubmit(event) {
     event.preventDefault();
@@ -105,9 +79,9 @@ function handleNewPlaceFormSubmit(event) {
         title: placeTitle.value,
     };
 
-    renderCard(newObject);
+    renderCard(newObject, cardList);
     closePopup(addPlacePopupWindow);
-    formSubmitButton.disabled = true;
+    addFormValidator.toggleButtonState();
     formSubmitButton.classList.add("popup__save-button_disabled");
     placeURL.value = "";
     placeTitle.value = "";

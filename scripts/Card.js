@@ -1,4 +1,4 @@
-import openPopup from "./index.js";
+import { openPopup } from "./utils.js";
 
 class Card {
   constructor(data, cardSelector) {
@@ -6,9 +6,9 @@ class Card {
     this._link = data.url;
 
     this._cardSelector = cardSelector;
-    this._likeButton;
-    this._deleteButton;
-    this._cardImage;
+    this._likeButton = null;
+    this._deleteButton = null;
+    this._cardImage = null;
   }
 
   _getTemplate() {
@@ -38,6 +38,7 @@ class Card {
 
   _handleDelete() {
     this._element.remove();
+    this._element = null;
   }
 
   _handlePreviewPicture() {
@@ -55,7 +56,9 @@ class Card {
     this._setEventListeners();
 
     this._element.querySelector(".card__image").src = this._link;
+    this._element.querySelector(".card__image").alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
+    
 
     return this._element;
   }

@@ -13,4 +13,4 @@ A photo grid project showing images from a selection of trips around the U.S.
 ### Link
 You can demo the project by clicking on the link below.
 
-https://samjhudson01.github.io/web_project_4/git 
+https://samjhudson01.github.io/se_project_aroundtheus/
