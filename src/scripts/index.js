@@ -119,4 +119,7 @@ const renderCard = (data, wrap) => {
 
 
 initialCards.forEach(card => renderCard(card, cardList));
-togglePopupCloseEventListeners();
+togglePopupCloseEventListeners(); 
+
+
+
