@@ -1,8 +1,8 @@
-import "../pages/index.css";
+import "./index.css";
 
-import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
-import { openPopup, closePopup, closeWithEscape, togglePopupCloseEventListeners } from "./utils.js";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import { openPopup, closePopup, closeWithEscape, togglePopupCloseEventListeners } from "../components/utils.js";
 
 
 const editProfilePopupWindow = document.querySelector("#edit-profile-popup");
