@@ -56,28 +56,25 @@ const addCardFormValidator = new FormValidator(
   document.querySelector("#add-card-popup")
 );
 
-const userInfo = new UserInfo(
-   ".profile__name",
-   ".profile__title"
-);
-const EditUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
+const userInfo = new UserInfo(".profile__name", ".profile__title");
+const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
   userInfo.setUserInfo(data);
   console.log(data);
-  EditUserPopup.close();
+  editUserPopup.close();
 });
-const CardPreviewPopup = new PopupWithImage("#image-popup");
-const CardSection = new Section(
+const cardPreviewPopup = new PopupWithImage("#image-popup");
+const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
       const card = new Card(
         item,
         (imageData) => {
-          CardPreviewPopup.open(imageData);
+          cardPreviewPopup.open(imageData);
         },
         "#card-template"
       ).generateCard();
-      CardSection.addItem(card);
+      cardSection.addItem(card);
     },
   },
   ".photo-grid"
@@ -87,19 +84,18 @@ const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
   const card = new Card(
     data,
     (imageData) => {
-      CardPreviewPopup.open(imageData);
+      cardPreviewPopup.open(imageData);
     },
     "#card-template"
   ).generateCard();
-  CardSection.addItem(card);
+  cardSection.addItem(card);
   addCardPopup.close();
-}
-);
+});
 
 //Initialise all class instances
-CardSection.renderItems();
-CardPreviewPopup.setEventListeners();
-EditUserPopup.setEventListeners();
+cardSection.renderItems();
+cardPreviewPopup.setEventListeners();
+editUserPopup.setEventListeners();
 addCardPopup.setEventListeners();
 profileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
@@ -109,11 +105,10 @@ const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 
 editButton.addEventListener("click", () => {
-  EditUserPopup.open();
+  editUserPopup.open();
 });
 
 addButton.addEventListener("click", () => {
   addCardPopup.open();
-}
-);
-
+  addCardFormValidator.toggleButtonState();
+});

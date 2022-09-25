@@ -1,7 +1,5 @@
-import { openPopup } from "./utils.js";
-
 class Card {
-  constructor(data, handleImageClick, cardSelector ) {
+  constructor(data, handleImageClick, cardSelector) {
     this._name = data.title;
     this._link = data.url;
 
@@ -29,7 +27,7 @@ class Card {
 
     this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.addEventListener("click", () =>
-      this._handleImageClick({link: this._link, name: this._name})
+      this._handleImageClick({ link: this._link, name: this._name })
     );
   }
 
@@ -42,7 +40,6 @@ class Card {
     this._element = null;
   }
 
-
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
@@ -50,7 +47,6 @@ class Card {
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
-    
 
     return this._element;
   }
