@@ -42,15 +42,6 @@ class Card {
     this._element = null;
   }
 
-  // _handlePreviewPicture() {
-  //   const imagePopupWindow = document.querySelector("#image-popup");
-  //   const popupImage = imagePopupWindow.querySelector(".popup__image");
-  //   const popupCaption = imagePopupWindow.querySelector(".popup__caption");
-  //   popupImage.src = this._link;
-  //   popupImage.alt = this._name;
-  //   popupCaption.textContent = this._name;
-  //   openPopup(imagePopupWindow);
-  // }
 
   generateCard() {
     this._element = this._getTemplate();
