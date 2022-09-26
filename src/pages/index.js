@@ -103,8 +103,16 @@ addCardFormValidator.enableValidation();
 //Everything else
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
+let userNamePopupField = document.querySelector("#owner-name");
+let userTitlePopupField = document.querySelector("#owner-about");
+const userName = document.querySelector(".profile__name");
+const userTitle = document.querySelector(".profile__title");
 
 editButton.addEventListener("click", () => {
+  userNamePopupField.value = userName.textContent;
+  console.log(userTitlePopupField);
+  console.log(userTitle.textContent);
+  userTitlePopupField.value = userTitle.textContent;
   editUserPopup.open();
 });
 

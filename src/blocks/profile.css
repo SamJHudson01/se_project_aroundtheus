@@ -45,7 +45,7 @@
     height: 24px;
     width: 24px;
     margin-left: 18px;
-    background: url(../images/Edit\ Button.svg);
+    background: url(../images/editButton.svg);
     background-size: cover;
     border: 0;
     align-self: center;
@@ -61,7 +61,7 @@
     height: 50px;
     margin-left: auto;
     align-self: center;
-    background-image: url("../images/Add Button small.svg");
+    background-image: url("../images/addButtonSmall.svg");
     background-color: black;
     background-size: cover;
     border: none;
@@ -89,7 +89,7 @@
         height: 50px;
         margin: 36px auto auto auto;
         align-self: center;
-        background-image: url("../images/Add Button large.svg");
+        background-image: url("../images/addButtonLarge.svg");
     }
     .profile__title {
         margin: 14px auto auto auto;
