@@ -1,27 +1,27 @@
 export const initialCards = [
     {
-      title: "Delicious Cake",
-      url: "https://images.unsplash.com/photo-1655552360629-2cbbb116727f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      name: "Delicious Cake",
+      link: "https://images.unsplash.com/photo-1655552360629-2cbbb116727f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
     },
     {
-      title: "Lake Louise",
-      url: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
     },
     {
-      title: "Bald Mountains",
-      url: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
     },
     {
-      title: "Latemar",
-      url: "https://code.s3.yandex.net/web-code/latemar.jpg",
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg",
     },
     {
-      title: "Vanoise National Park",
-      url: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+      name: "Vanoise National Park",
+      link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
     },
     {
-      title: "Lago di Braies",
-      url: "https://code.s3.yandex.net/web-code/lago.jpg",
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg",
     },
   ];
 
@@ -32,3 +32,5 @@ export const initialCards = [
     inputErrorClass: "popup__input_type_error",
     errorClass: "popup__error_visible",
   };
+
+  export const profileId = "388e1377-9ab5-4db7-9c4c-d98eb5bc0391";

@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "build": "rm -rf dist && webpack --mode production",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.4",
     "cssnano": "5.0.2",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.2",
     "postcss-loader": "^5.2.0",

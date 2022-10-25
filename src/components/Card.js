@@ -1,7 +1,12 @@
+import { profileId } from "../utils/constants";
+
 class Card {
-  constructor(data, handleImageClick, cardSelector) {
-    this._name = data.title;
-    this._link = data.url;
+  constructor(data, handleImageClick, cardSelector, profileId) {
+    this._name = data.name;
+    this._link = data.link;
+    this._id = data._id;
+    this._likes = data.likes;
+    this._profileID = profileId;
 
     this._cardSelector = cardSelector;
     this._likeButton = null;
@@ -40,12 +45,32 @@ class Card {
     this._element = null;
   }
 
-  generateCard() {
+  generateInitialCard(data) {
+    this._element = this._getTemplate();
+    this._setEventListeners();
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    if (data.owner._id !== "8d814e3f6930e2ea2f332d3d" || !data.owner._id) {
+      this._deleteButton.style.display = "none";
+    }
+    this._element.querySelector(".card__title").textContent = this._name;
+    if (this._likes) {
+      this._element.querySelector(".card__like-count").textContent =
+        this._likes.length;
+    } else {
+      this._element.querySelector(".card__like-count").textContent = 0;
+    }
+
+    return this._element;
+  }
+
+  generateNewCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
+    this._element.querySelector(".card__like-count").textContent = 0;
 
     return this._element;
   }
