@@ -131,7 +131,10 @@ function createCard(data, profileId) {
       cardPreviewPopup.open(imageData);
     },
     "#card-template",
-    profileId
+    profileId,
+    (data) => {
+      deleteCardPopup.open();
+    }
   ).generateInitialCard(data);
   return card;
 }

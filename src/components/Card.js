@@ -1,7 +1,7 @@
 import { profileId } from "../utils/constants";
 
 class Card {
-  constructor(data, handleImageClick, cardSelector, profileId) {
+  constructor(data, handleImageClick, cardSelector, profileId, handleDeleteClick) {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
@@ -13,6 +13,7 @@ class Card {
     this._deleteButton = null;
     this._cardImage = null;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
 
   _getTemplate() {
@@ -28,7 +29,7 @@ class Card {
     this._likeButton.addEventListener("click", () => this._handleLike());
 
     this._deleteButton = this._element.querySelector(".card__delete-button");
-    this._deleteButton.addEventListener("click", () => this._handleDelete());
+    this._deleteButton.addEventListener("click", () => this._handleDeleteClick(this._id));
 
     this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.addEventListener("click", () =>
