@@ -63,9 +63,10 @@ const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
 const cardPreviewPopup = new PopupWithImage("#image-popup");
 
 const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
-  const card = createCard(data);
-  addCardApi.addCard(data);
-  cardSection.addItem(card);
+  addCardApi.addCard(data, (data) => {
+    const card = createCard(data);
+    cardSection.addItem(card);
+  });
   addCardPopup.close();
 });
 
@@ -112,8 +113,6 @@ const addButton = document.querySelector(".profile__add-button");
 const userNamePopupField = document.querySelector("#owner-name");
 const userTitlePopupField = document.querySelector("#owner-about");
 
-
-
 editButton.addEventListener("click", () => {
   userNamePopupField.value = userInfo.getUserInfo().name;
   userTitlePopupField.value = userInfo.getUserInfo().about;
@@ -124,9 +123,6 @@ addButton.addEventListener("click", () => {
   addCardPopup.open();
   addCardFormValidator.toggleButtonState();
 });
-
-
-
 
 function createCard(data, profileId) {
   const card = new Card(
@@ -139,5 +135,3 @@ function createCard(data, profileId) {
   ).generateInitialCard(data);
   return card;
 }
-
-
