@@ -1,7 +1,13 @@
 import { profileId } from "../utils/constants";
 
 class Card {
-  constructor(data, handleImageClick, cardSelector, profileId, handleDeleteClick) {
+  constructor(
+    data,
+    handleImageClick,
+    cardSelector,
+    profileId,
+    handleDeleteClick
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
@@ -29,7 +35,9 @@ class Card {
     this._likeButton.addEventListener("click", () => this._handleLike());
 
     this._deleteButton = this._element.querySelector(".card__delete-button");
-    this._deleteButton.addEventListener("click", () => this._handleDeleteClick(this._id));
+    this._deleteButton.addEventListener("click", () => {
+      this._handleDeleteClick(this._id, this._element);
+    });
 
     this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.addEventListener("click", () =>
@@ -41,17 +49,12 @@ class Card {
     this._likeButton.classList.toggle("card__like-button_true");
   }
 
-  _handleDelete() {
-    this._element.remove();
-    this._element = null;
-  }
-
   generateInitialCard(data) {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    console.log(data)
+    console.log(data);
     if (data.owner._id !== "8d814e3f6930e2ea2f332d3d" || !data.owner._id) {
       this._deleteButton.style.display = "none";
     }

@@ -37,6 +37,15 @@ const addCardApi = new Api({
   },
 });
 
+const deleteCardApi = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  method: "DELETE",
+  headers: {
+    authorization: profileId,
+    "Content-Type": "application/json",
+  },
+});
+
 const userInfo = new UserInfo(
   ".profile__name",
   ".profile__title",
@@ -71,6 +80,8 @@ const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
 });
 
 const deleteCardPopup = new PopupWithForm("#delete-popup", (data) => {
+  console.log(data)
+  deleteCardApi.deleteCard(data._id);
   deleteCardPopup.close();
 });
 
@@ -132,9 +143,11 @@ function createCard(data, profileId) {
     },
     "#card-template",
     profileId,
-    (data) => {
+    (data, element) => {
       deleteCardPopup.open();
+      deleteCardApi.deleteCard(data, element) 
     }
   ).generateInitialCard(data);
   return card;
 }
+

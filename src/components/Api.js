@@ -87,6 +87,27 @@ class Api {
         console.log(err);
       });
   }
+
+  deleteCard(cardId, element) {
+    fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: this._method,
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .then((result) => {
+        console.log(result);
+        element.remove();
+        element = null;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   // other methods for working with the API
 }
 
