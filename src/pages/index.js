@@ -9,6 +9,7 @@ import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
 import Api from "../components/Api";
+import ConfirmDeleteCardPopup from "../components/ConfirmDeleteCardPopup";
 
 //Create all class instances
 
@@ -79,10 +80,11 @@ const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
   addCardPopup.close();
 });
 
-const deleteCardPopup = new PopupWithForm("#delete-popup", (data) => {
-  console.log(data)
-  deleteCardApi.deleteCard(data._id);
+const deleteCardPopup = new ConfirmDeleteCardPopup("#delete-popup", (id, element) => {
   deleteCardPopup.close();
+  deleteCardApi.deleteCard(id, element);
+  
+
 });
 
 const cardSection = new Section(
@@ -143,9 +145,9 @@ function createCard(data, profileId) {
     },
     "#card-template",
     profileId,
-    (data, element) => {
-      deleteCardPopup.open();
-      deleteCardApi.deleteCard(data, element) 
+    (id, element) => {
+      deleteCardPopup.open(id, element);
+      
     }
   ).generateInitialCard(data);
   return card;

@@ -102,7 +102,7 @@ class Api {
       .then((result) => {
         console.log(result);
         element.remove();
-        element = null;
+    element = null;
       })
       .catch((err) => {
         console.log(err);
