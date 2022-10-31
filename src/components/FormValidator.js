@@ -60,6 +60,7 @@ class FormValidator {
                 this.toggleButtonState();
             });
         });
+        
     }
 
     enableValidation() {

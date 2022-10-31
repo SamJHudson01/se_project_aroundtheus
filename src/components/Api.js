@@ -102,11 +102,60 @@ class Api {
       .then((result) => {
         console.log(result);
         element.remove();
-    element = null;
+        element = null;
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  toggleLike(cardId, isLiked, element) {
+    if (isLiked) {
+      fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        method: "DELETE",
+        headers: this._headers,
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        })
+        .then((result) => {
+          element
+            .querySelector(".card__like-button")
+            .classList.remove("card__like-button_true");
+            console.log(element.querySelector(".card__like-button"))
+          element.querySelector(".card__like-count").textContent =
+            result.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        method: "PUT",
+        headers: this._headers,
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        })
+        .then((result) => {
+          element
+            .querySelector(".card__like-button")
+            .classList.add("card__like-button_true");
+          console.log( element
+            .querySelector(".card__like-button"))
+          element.querySelector(".card__like-count").textContent =
+            result.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
   // other methods for working with the API
 }

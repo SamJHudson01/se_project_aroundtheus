@@ -63,6 +63,14 @@ const addCardFormValidator = new FormValidator(
   document.querySelector("#add-card-popup")
 );
 
+const changeAvatarFormValidator = new FormValidator(
+  validationConfig,
+  document.querySelector("#change-avatar-popup")
+);
+
+console.log(changeAvatarFormValidator);
+console.log(addCardFormValidator);
+
 const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
   editUserApi.setUserInfo(data);
   editUserApi.getUserInfo((data) => {
@@ -80,12 +88,18 @@ const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
   addCardPopup.close();
 });
 
-const deleteCardPopup = new ConfirmDeleteCardPopup("#delete-popup", (id, element) => {
-  deleteCardPopup.close();
-  deleteCardApi.deleteCard(id, element);
-  
+const deleteCardPopup = new ConfirmDeleteCardPopup(
+  "#delete-popup",
+  (id, element) => {
+    deleteCardPopup.close();
+    deleteCardApi.deleteCard(id, element);
+  }
+);
 
+const editAvatarPopup = new PopupWithForm("#change-avatar-popup", (data) => {
+  editUserApi.setUserAvatar(data);
 });
+
 
 const cardSection = new Section(
   {
@@ -116,15 +130,18 @@ initialStateApi.getUserInfo((data) => {
 cardPreviewPopup.setEventListeners();
 editUserPopup.setEventListeners();
 addCardPopup.setEventListeners();
+changeAvatarFormValidator.enableValidation();
 profileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 deleteCardPopup.setEventListeners();
+editAvatarPopup.setEventListeners();
 
 //Everything else
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const userNamePopupField = document.querySelector("#owner-name");
 const userTitlePopupField = document.querySelector("#owner-about");
+const changeAvatarButton = document.querySelector(".profile__image-edit-button");
 
 editButton.addEventListener("click", () => {
   userNamePopupField.value = userInfo.getUserInfo().name;
@@ -137,6 +154,10 @@ addButton.addEventListener("click", () => {
   addCardFormValidator.toggleButtonState();
 });
 
+changeAvatarButton.addEventListener("click", () => {
+  editAvatarPopup.open();
+});
+
 function createCard(data, profileId) {
   const card = new Card(
     data,
@@ -147,9 +168,10 @@ function createCard(data, profileId) {
     profileId,
     (id, element) => {
       deleteCardPopup.open(id, element);
-      
+    },
+    (id, False, element) => {
+      initialStateApi.toggleLike(id, False, element);
     }
   ).generateInitialCard(data);
   return card;
 }
-
