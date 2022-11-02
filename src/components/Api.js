@@ -5,8 +5,8 @@ class Api {
     this._method = options.method;
   }
 
-  getInitialCards(generateCards) {
-    fetch(`${this._baseUrl}/cards`, {
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
       .then((res) => {
@@ -14,17 +14,14 @@ class Api {
           return res.json();
         }
         return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        generateCards(result);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  getUserInfo(getUserInfo) {
-    fetch(`${this._baseUrl}/users/me`, {
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
       .then((res) => {
@@ -32,9 +29,6 @@ class Api {
           return res.json();
         }
         return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        getUserInfo(result);
       })
       .catch((err) => {
         console.log(err);
@@ -126,7 +120,7 @@ class Api {
           element
             .querySelector(".card__like-button")
             .classList.remove("card__like-button_true");
-            console.log(element.querySelector(".card__like-button"))
+          console.log(element.querySelector(".card__like-button"));
           element.querySelector(".card__like-count").textContent =
             result.likes.length;
         })
@@ -148,8 +142,7 @@ class Api {
           element
             .querySelector(".card__like-button")
             .classList.add("card__like-button_true");
-          console.log( element
-            .querySelector(".card__like-button"))
+          console.log(element.querySelector(".card__like-button"));
           element.querySelector(".card__like-count").textContent =
             result.likes.length;
         })
@@ -176,15 +169,12 @@ class Api {
       .then((result) => {
         console.log(result);
         updateAvatar(result);
-  
       })
       .catch((err) => {
         console.log(err);
-        
       });
   }
 
-  
   // other methods for working with the API
 }
 

@@ -24,9 +24,13 @@
         <section class="profile">
           <div class="profile__image-container">
             <img src="" alt="Profile Picture" class="profile__picture" />
-            <img src="<%=require('./images/editImageButton.png')%>" alt="" class="profile__image-edit-button">
+            <img
+              src="<%=require('./images/editImageButton.png')%>"
+              alt=""
+              class="profile__image-edit-button"
+            />
           </div>
-          
+
           <div class="profile__owner">
             <div class="profile__name-edit">
               <h1 class="profile__name"></h1>
@@ -112,7 +116,7 @@
         </form>
       </div>
     </div>
-    
+
     <div class="popup" id="change-avatar-popup">
       <div class="popup__content">
         <button class="popup__close" type="button"></button>
@@ -129,13 +133,11 @@
             minlength="2"
           />
           <span class="popup__error" id="avatar-link-error"></span>
-          
+
           <button class="popup__save-button" type="submit">Save</button>
         </form>
       </div>
     </div>
-
-
 
     <div class="popup" id="image-popup">
       <div class="popup__content popup__content_type-image">

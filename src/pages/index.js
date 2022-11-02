@@ -51,14 +51,23 @@ const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
 });
 const cardPreviewPopup = new PopupWithImage("#image-popup");
 
+// const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
+//   api.addCard(data, (data) => {
+//     const card = createCard(data);
+//     cardSection.addItem(card);
+//   });
+//   addCardPopup.close();
+// });
+
 const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
+  addCardPopup.renderLoading(true, "Saving...");
   api.addCard(data, (data) => {
     const card = createCard(data);
     cardSection.addItem(card);
+    addCardPopup.close();
+    addCardPopup.renderLoading(false, "Create");
   });
-  addCardPopup.close();
 });
-
 
 const deleteCardPopup = new ConfirmDeleteCardPopup(
   "#delete-popup",
@@ -69,11 +78,12 @@ const deleteCardPopup = new ConfirmDeleteCardPopup(
 );
 
 const editAvatarPopup = new PopupWithForm("#change-avatar-popup", (data) => {
+  editAvatarPopup.renderLoading(true, "Saving...");
   api.changeAvatar(data, (data) => {
     userInfo.setUserAvatar(data.avatar);
+    editAvatarPopup.close();
+    editAvatarPopup.renderLoading(false, "Save");
   });
-  editAvatarPopup.close();
-
 });
 
 const cardSection = new Section(
@@ -89,18 +99,17 @@ const cardSection = new Section(
 
 //Initialise all class instances
 
-api.getInitialCards((data) => {
-  data.forEach((item) => {
+Promise.all([api.getInitialCards(), api.getUserInfo()]).then((values) => {
+  values[0].forEach((item) => {
     const card = createCard(item);
     cardSection.addInitialItem(card);
   });
+
+  userInfo.setUserInfo(values[1]);
+  userInfo.setUserAvatar(values[1].avatar);
 });
 
-api.getUserInfo((data) => {
-  userInfo.setUserInfo(data);
-  userInfo.setUserAvatar(data.avatar);
-  console.log(data.avatar);
-});
+//
 
 cardPreviewPopup.setEventListeners();
 editUserPopup.setEventListeners();

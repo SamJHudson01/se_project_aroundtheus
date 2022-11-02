@@ -30,13 +30,13 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
-  renderLoading(isLoading) {
+  renderLoading(isLoading, text) {
     if (isLoading) {
-      this._popup.querySelector(".popup__button").textContent = "Saving...";
+      this._popup.querySelector(".popup__save-button").textContent = text;
     } else {
-      this._popup.querySelector(".popup__button").textContent = "Save";
+      this._popup.querySelector(".popup__save-button").textContent = text;
     }
   }
 
-  
+
 }
