@@ -43,11 +43,12 @@ class Api {
 
   setUserInfo(data) {
     fetch(`${this._baseUrl}/users/me`, {
-      method: this._method,
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
+        avatar: data.avatar,
       }),
     })
       .then((res) => {
@@ -66,7 +67,7 @@ class Api {
 
   addCard(data, generateCard) {
     fetch(`${this._baseUrl}/cards`, {
-      method: this._method,
+      method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -90,7 +91,7 @@ class Api {
 
   deleteCard(cardId, element) {
     fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: this._method,
+      method: "DELETE",
       headers: this._headers,
     })
       .then((res) => {
@@ -157,6 +158,33 @@ class Api {
         });
     }
   }
+
+  changeAvatar(data, updateAvatar) {
+    fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.link,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .then((result) => {
+        console.log(result);
+        updateAvatar(result);
+  
+      })
+      .catch((err) => {
+        console.log(err);
+        
+      });
+  }
+
+  
   // other methods for working with the API
 }
 

@@ -59,7 +59,6 @@ class Card {
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    console.log(data);
     if (data.owner._id !== "8d814e3f6930e2ea2f332d3d" || !data.owner._id) {
       this._deleteButton.style.display = "none";
     }

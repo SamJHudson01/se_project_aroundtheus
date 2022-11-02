@@ -13,34 +13,8 @@ import ConfirmDeleteCardPopup from "../components/ConfirmDeleteCardPopup";
 
 //Create all class instances
 
-const initialStateApi = new Api({
+const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
-  headers: {
-    authorization: profileId,
-  },
-});
-
-const editUserApi = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-12",
-  method: "PATCH",
-  headers: {
-    authorization: profileId,
-    "Content-Type": "application/json",
-  },
-});
-
-const addCardApi = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-12",
-  method: "POST",
-  headers: {
-    authorization: profileId,
-    "Content-Type": "application/json",
-  },
-});
-
-const deleteCardApi = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-12",
-  method: "DELETE",
   headers: {
     authorization: profileId,
     "Content-Type": "application/json",
@@ -68,12 +42,9 @@ const changeAvatarFormValidator = new FormValidator(
   document.querySelector("#change-avatar-popup")
 );
 
-console.log(changeAvatarFormValidator);
-console.log(addCardFormValidator);
-
 const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
-  editUserApi.setUserInfo(data);
-  editUserApi.getUserInfo((data) => {
+  api.setUserInfo(data);
+  api.getUserInfo((data) => {
     userInfo.setUserInfo(data);
   });
   editUserPopup.close();
@@ -81,25 +52,29 @@ const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
 const cardPreviewPopup = new PopupWithImage("#image-popup");
 
 const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
-  addCardApi.addCard(data, (data) => {
+  api.addCard(data, (data) => {
     const card = createCard(data);
     cardSection.addItem(card);
   });
   addCardPopup.close();
 });
 
+
 const deleteCardPopup = new ConfirmDeleteCardPopup(
   "#delete-popup",
   (id, element) => {
     deleteCardPopup.close();
-    deleteCardApi.deleteCard(id, element);
+    api.deleteCard(id, element);
   }
 );
 
 const editAvatarPopup = new PopupWithForm("#change-avatar-popup", (data) => {
-  editUserApi.setUserAvatar(data);
-});
+  api.changeAvatar(data, (data) => {
+    userInfo.setUserAvatar(data.avatar);
+  });
+  editAvatarPopup.close();
 
+});
 
 const cardSection = new Section(
   {
@@ -114,17 +89,17 @@ const cardSection = new Section(
 
 //Initialise all class instances
 
-initialStateApi.getInitialCards((data) => {
+api.getInitialCards((data) => {
   data.forEach((item) => {
-    // console.log(item);
     const card = createCard(item);
     cardSection.addInitialItem(card);
   });
 });
 
-initialStateApi.getUserInfo((data) => {
+api.getUserInfo((data) => {
   userInfo.setUserInfo(data);
   userInfo.setUserAvatar(data.avatar);
+  console.log(data.avatar);
 });
 
 cardPreviewPopup.setEventListeners();
@@ -141,11 +116,14 @@ const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const userNamePopupField = document.querySelector("#owner-name");
 const userTitlePopupField = document.querySelector("#owner-about");
-const changeAvatarButton = document.querySelector(".profile__image-edit-button");
+const changeAvatarButton = document.querySelector(
+  ".profile__image-edit-button"
+);
 
 editButton.addEventListener("click", () => {
   userNamePopupField.value = userInfo.getUserInfo().name;
   userTitlePopupField.value = userInfo.getUserInfo().about;
+  console.log(userInfo.getUserInfo().about);
   editUserPopup.open();
 });
 
@@ -170,7 +148,7 @@ function createCard(data, profileId) {
       deleteCardPopup.open(id, element);
     },
     (id, False, element) => {
-      initialStateApi.toggleLike(id, False, element);
+      api.toggleLike(id, False, element);
     }
   ).generateInitialCard(data);
   return card;

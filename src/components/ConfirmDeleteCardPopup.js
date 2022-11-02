@@ -6,13 +6,12 @@ export default class ConfirmDeleteCardPopup extends Popup {
     this._deleteCard = deleteCard;
     this._id = null;
     this._card = null;
+    this._form = this._popup.querySelector(".popup__form");
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popup
-      .querySelector(".popup__form")
-      .addEventListener("submit", (evt) => {
+    this._form.addEventListener("submit", (evt) => {
         evt.preventDefault();
         this._deleteCard(this._id, this._card);
       });
