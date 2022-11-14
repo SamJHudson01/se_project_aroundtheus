@@ -5,31 +5,25 @@ class Api {
     this._method = options.method;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+    .then(this._checkResponse)
       .catch((err) => {
         console.log(err);
       });
@@ -45,12 +39,7 @@ class Api {
         avatar: data.avatar,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then(this._checkResponse)
       .then((result) => {
         console.log(result);
       })
@@ -68,12 +57,7 @@ class Api {
         link: data.link,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then(this._checkResponse)
       .then((result) => {
         console.log(result);
         generateCard(result);
@@ -88,12 +72,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+    .then(this._checkResponse)
       .then((result) => {
         console.log(result);
         element.remove();
@@ -110,12 +89,7 @@ class Api {
         method: "DELETE",
         headers: this._headers,
       })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Error: ${res.status}`);
-        })
+      .then(this._checkResponse)
         .then((result) => {
           element
             .querySelector(".card__like-button")
@@ -132,12 +106,7 @@ class Api {
         method: "PUT",
         headers: this._headers,
       })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Error: ${res.status}`);
-        })
+      .then(this._checkResponse)
         .then((result) => {
           element
             .querySelector(".card__like-button")
@@ -152,7 +121,7 @@ class Api {
     }
   }
 
-  changeAvatar(data, updateAvatar) {
+  changeAvatar(data) {
     fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -160,19 +129,14 @@ class Api {
         avatar: data.link,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((result) => {
-        console.log(result);
-        updateAvatar(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(this._checkResponse)
+      // .then((result) => {
+      //   console.log(result);
+        // updateAvatar(result);
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
   }
 
   // other methods for working with the API

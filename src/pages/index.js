@@ -79,10 +79,14 @@ const deleteCardPopup = new ConfirmDeleteCardPopup(
 
 const editAvatarPopup = new PopupWithForm("#change-avatar-popup", (data) => {
   editAvatarPopup.renderLoading(true, "Saving...");
-  api.changeAvatar(data, (data) => {
-    userInfo.setUserAvatar(data.avatar);
+  api.changeAvatar(data)
+  .then((result) => {
+    userInfo.setUserAvatar(result.avatar);
     editAvatarPopup.close();
     editAvatarPopup.renderLoading(false, "Save");
+  })
+  .catch((err) => {
+    console.log(err);
   });
 });
 
