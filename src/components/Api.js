@@ -15,22 +15,21 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then(this._checkResponse);
+    }).then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
-    .then(this._checkResponse)
+      .then(this._checkResponse)
       .catch((err) => {
         console.log(err);
       });
   }
 
   setUserInfo(data) {
-    fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -40,47 +39,24 @@ class Api {
       }),
     })
       .then(this._checkResponse)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
-  addCard(data, generateCard) {
-    fetch(`${this._baseUrl}/cards`, {
+  addCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
       }),
-    })
-      .then(this._checkResponse)
-      .then((result) => {
-        console.log(result);
-        generateCard(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then(this._checkResponse);
   }
 
-  deleteCard(cardId, element) {
-    fetch(`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-    .then(this._checkResponse)
-      .then((result) => {
-        console.log(result);
-        element.remove();
-        element = null;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then(this._checkResponse);
   }
 
   toggleLike(cardId, isLiked, element) {
@@ -89,7 +65,7 @@ class Api {
         method: "DELETE",
         headers: this._headers,
       })
-      .then(this._checkResponse)
+        .then(this._checkResponse)
         .then((result) => {
           element
             .querySelector(".card__like-button")
@@ -106,7 +82,7 @@ class Api {
         method: "PUT",
         headers: this._headers,
       })
-      .then(this._checkResponse)
+        .then(this._checkResponse)
         .then((result) => {
           element
             .querySelector(".card__like-button")
@@ -122,24 +98,14 @@ class Api {
   }
 
   changeAvatar(data) {
-    fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.link,
       }),
-    })
-      .then(this._checkResponse)
-      // .then((result) => {
-      //   console.log(result);
-        // updateAvatar(result);
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
+    }).then(this._checkResponse);
   }
-
-  // other methods for working with the API
 }
 
 export default Api;
