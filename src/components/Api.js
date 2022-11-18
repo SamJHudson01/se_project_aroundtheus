@@ -37,8 +37,7 @@ class Api {
         about: data.about,
         avatar: data.avatar,
       }),
-    })
-      .then(this._checkResponse)
+    }).then(this._checkResponse);
   }
 
   addCard(data) {
@@ -59,42 +58,11 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  toggleLike(cardId, isLiked, element) {
-    if (isLiked) {
-      fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-        method: "DELETE",
-        headers: this._headers,
-      })
-        .then(this._checkResponse)
-        .then((result) => {
-          element
-            .querySelector(".card__like-button")
-            .classList.remove("card__like-button_true");
-          console.log(element.querySelector(".card__like-button"));
-          element.querySelector(".card__like-count").textContent =
-            result.likes.length;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-        method: "PUT",
-        headers: this._headers,
-      })
-        .then(this._checkResponse)
-        .then((result) => {
-          element
-            .querySelector(".card__like-button")
-            .classList.add("card__like-button_true");
-          console.log(element.querySelector(".card__like-button"));
-          element.querySelector(".card__like-count").textContent =
-            result.likes.length;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+  toggleLike(cardId, isLiked) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 
   changeAvatar(data) {

@@ -43,6 +43,7 @@ const changeAvatarFormValidator = new FormValidator(
 );
 
 const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
+  editUserPopup.renderLoading(true, "Saving...");
   api
     .setUserInfo(data)
     .then((result) => {
@@ -52,6 +53,9 @@ const editUserPopup = new PopupWithForm("#edit-profile-popup", (data) => {
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      editUserPopup.renderLoading(false, "Save");
     });
 });
 
@@ -124,6 +128,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then((values) => {
     values[0].forEach((item) => {
       const card = createCard(item);
+      console.log(item);
       cardSection.addInitialItem(card);
     });
 
@@ -184,8 +189,15 @@ function createCard(data, profileId) {
       deleteCardPopup.open(id, element);
     },
     (id, False, element) => {
-      api.toggleLike(id, False, element);
+      api
+        .toggleLike(id, False, element)
+        .then((result) => {
+          card.toggleLikeButton(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  ).generateInitialCard(data);
-  return card;
+  );
+  return card.generateInitialCard(data);
 }

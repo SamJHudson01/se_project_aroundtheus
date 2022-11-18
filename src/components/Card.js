@@ -1,4 +1,4 @@
-import { profileId } from "../utils/constants";
+import { ownerId } from "../utils/constants";
 
 class Card {
   constructor(
@@ -14,6 +14,7 @@ class Card {
     this._id = data._id;
     this._likes = data.likes;
     this._profileID = profileId;
+    this._ownerID = data.owner._id;
 
     this._cardSelector = cardSelector;
     this._likeButton = null;
@@ -30,6 +31,12 @@ class Card {
       .content.querySelector(".card")
       .cloneNode(true);
     return cardElement;
+  }
+
+  toggleLikeButton(data) {
+    this._likeButton.classList.toggle("card__like-button_true");
+    this._element.querySelector(".card__like-count").textContent =
+      data.likes.length;
   }
 
   _setEventListeners() {
@@ -58,7 +65,7 @@ class Card {
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    if (data.owner._id !== "8d814e3f6930e2ea2f332d3d" || !data.owner._id) {
+    if (this._ownerID !== ownerId || !this._ownerID) {
       this._deleteButton.style.display = "none";
     }
 
