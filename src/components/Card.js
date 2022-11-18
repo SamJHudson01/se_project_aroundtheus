@@ -69,7 +69,7 @@ class Card {
       this._deleteButton.style.display = "none";
     }
 
-    if (data.likes.some((like) => like._id === "8d814e3f6930e2ea2f332d3d")) {
+    if (data.likes.some((like) => like._id === ownerId)) {
       this._likeButton.classList.add("card__like-button_true");
     }
     this._element.querySelector(".card__title").textContent = this._name;
