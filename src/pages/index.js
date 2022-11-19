@@ -126,14 +126,16 @@ const cardSection = new Section(
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then((values) => {
-    values[0].forEach((item) => {
-      const card = createCard(item);
-      console.log(item);
-      cardSection.addInitialItem(card);
-    });
+    
 
     userInfo.setUserInfo(values[1]);
     userInfo.setUserAvatar(values[1].avatar);
+    userInfo.setProfileOwnerId(values[1]._id);
+
+    values[0].forEach((item) => {
+      const card = createCard(item, userInfo.getProfileOwnerId());
+      cardSection.addInitialItem(card);
+    })
   })
   .catch((err) => {
     console.log(err);

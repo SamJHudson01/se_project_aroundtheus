@@ -1,4 +1,4 @@
-import { ownerId } from "../utils/constants";
+
 
 class Card {
   constructor(
@@ -65,11 +65,11 @@ class Card {
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    if (this._ownerID !== ownerId || !this._ownerID) {
+    if (this._ownerID !== this._profileID || !this._ownerID) {
       this._deleteButton.style.display = "none";
     }
 
-    if (data.likes.some((like) => like._id === ownerId)) {
+    if (data.likes.some((like) => like._id === this._profileID)) {
       this._likeButton.classList.add("card__like-button_true");
     }
     this._element.querySelector(".card__title").textContent = this._name;
