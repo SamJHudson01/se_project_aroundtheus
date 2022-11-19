@@ -66,8 +66,7 @@ const addCardPopup = new PopupWithForm("#add-card-popup", (data) => {
   api
     .addCard(data)
     .then((result) => {
-      console.log(result);
-      const card = createCard(result);
+      const card = createCard(result, userInfo.getProfileOwnerId());
       cardSection.addItem(card);
       addCardPopup.close();
     })

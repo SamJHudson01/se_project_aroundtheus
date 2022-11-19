@@ -1,4 +1,4 @@
-
+import { ownerId } from "../utils/constants";
 
 class Card {
   constructor(
@@ -65,7 +65,7 @@ class Card {
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    if (this._ownerID !== this._profileID || !this._ownerID) {
+    if (this._ownerID !== this._profileID) {
       this._deleteButton.style.display = "none";
     }
 
